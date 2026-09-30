@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login | TRENT CARD</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
+}
+
+.login-box{
+  width:400px;
+  max-width:90%;
+  background:#f5f5f5;
+  padding:40px;
+  border-radius:20px;
+  border:1px solid #b08d57;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+}
+
+.logo{
+  text-align:center;
+  color:#111;
+  font-size:25px;
+  font-weight:bold;
+  letter-spacing:2px;
+  margin-bottom:8px;
+}
+
+.admin-title{
+  text-align:center;
+  color:#b08d57;
+  font-size:14px;
+  letter-spacing:2px;
+  margin-bottom:30px;
+}
+
+.form-group{
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  margin-bottom:8px;
+  font-weight:bold;
+  color:#222;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:10px;
+  font-size:15px;
+  outline:none;
+}
+
+input:focus{
+  border-color:#b08d57;
+}
+
+.login-btn{
+  width:100%;
+  padding:14px;
+  background:#111;
+  color:#b08d57;
+  border:1px solid #b08d57;
+  border-radius:10px;
+  font-size:15px;
+  font-weight:bold;
+  letter-spacing:1px;
+  cursor:pointer;
+}
+
+.login-btn:hover{
+  background:#b08d57;
+  color:#111;
+}
+
+.login-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.error{
+  color:#d00;
+  text-align:center;
+  margin-top:15px;
+  display:none;
+  font-size:14px;
+}
+
+.success{
+  color:#2e7d32;
+  text-align:center;
+  margin-top:15px;
+  display:none;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.back-btn{
+  display:block;
+  width:100%;
+  margin-top:15px;
+  padding:11px;
+  background:transparent;
+  color:#111;
+  border:1px solid #aaa;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+  <div class="logo">𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃</div>
+
+  <div class="admin-title">ADMIN LOGIN</div>
+
+  <form id="loginForm">
+
+    <div class="form-group">
+      <label>Username</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter username"
+        autocomplete="username"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter password"
+        autocomplete="current-password"
+        required
+      >
+    </div>
+
+    <button
+      type="submit"
+      class="login-btn"
+      id="loginBtn"
+    >
+      LOGIN
+    </button>
+
+    <div class="error" id="errorMessage"></div>
+
+    <div class="success" id="successMessage">
+      Login successful! Opening Admin Panel...
+    </div>
+
+  </form>
+
+  <button
+    class="back-btn"
+    onclick="location.href='../index.html'"
+  >
+    ← BACK TO WEBSITE
+  </button>
+
+</div>
+
+<script>
+
+const API_URL = "http://localhost:5000";
+
+const loginForm = document.getElementById("loginForm");
+const usernameInput = document.getElementById("username");
+const passwordInput = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+const errorMessage = document.getElementById("errorMessage");
+const successMessage = document.getElementById("successMessage");
+
+loginForm.addEventListener("submit", async function(event){
+
+  event.preventDefault();
+
+  errorMessage.style.display = "none";
+  successMessage.style.display = "none";
+
+  const username = usernameInput.value.trim();
+  const password = passwordInput.value;
+
+  loginBtn.disabled = true;
+  loginBtn.innerText = "LOGGING IN...";
+
+  try{
+
+    const response = await fetch(
+      API_URL + "/api/admin/login",
+      {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json"
+        },
+        body:JSON.stringify({
+          username:username,
+          password:password
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("LOGIN RESPONSE:", data);
+
+    if(!response.ok || !data.success || !data.token){
+      throw new Error(
+        data.message || "Invalid username or password"
+      );
+    }
+
+    /* SAVE ONLY THE TOKEN WE NEED */
+
+    localStorage.setItem(
+      "trentAdminToken",
+      data.token
+    );
+
+    /* REMOVE OLD FLAG */
+
+    localStorage.removeItem("trentAdmin");
+
+    successMessage.style.display = "block";
+
+    loginBtn.innerText = "LOGIN SUCCESSFUL";
+
+    /* GO TO ADD PRODUCT */
+
+    setTimeout(function(){
+
+      window.location.assign(
+        "admin-add-product.html"
+      );
+
+    },700);
+
+  }
+  catch(error){
+
+    console.error("LOGIN ERROR:",error);
+
+    errorMessage.innerText =
+      "❌ " + error.message;
+
+    errorMessage.style.display = "block";
+
+    loginBtn.disabled = false;
+    loginBtn.innerText = "LOGIN";
+  }
+
+});
+
+</script>
+
+</body>
+</html>

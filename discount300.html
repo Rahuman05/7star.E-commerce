@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>₹300 OFF | TRENT CARD</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #111;
+    }
+
+
+    /* =====================
+       NAVBAR
+    ===================== */
+
+    .navbar {
+      height: 70px;
+      background: #111;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7%;
+
+      color: white;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .back-btn {
+      padding: 10px 20px;
+
+      background: transparent;
+      color: white;
+
+      border: 1px solid #b08d57;
+      border-radius: 25px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #b08d57;
+    }
+
+
+    /* =====================
+       HEADER
+    ===================== */
+
+    .page-header {
+      text-align: center;
+
+      padding: 50px 20px 30px;
+    }
+
+    .page-header span {
+      color: #b08d57;
+
+      font-size: 12px;
+
+      font-weight: bold;
+
+      letter-spacing: 4px;
+    }
+
+    .page-header h1 {
+      font-size: 38px;
+
+      margin: 10px 0;
+    }
+
+    .page-header p {
+      color: #777;
+
+      font-size: 15px;
+    }
+
+
+    /* =====================
+       PRODUCTS
+    ===================== */
+
+    .products {
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 20px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+
+    /* =====================
+       PRODUCT CARD
+    ===================== */
+
+    .product-card {
+      background: white;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0,0,0,0.08);
+
+      transition: 0.3s;
+
+      text-align: center;
+
+      padding-bottom: 25px;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+
+      box-shadow:
+        0 20px 40px
+        rgba(0,0,0,0.15);
+    }
+
+
+    /* PRODUCT IMAGE */
+
+    .product-image {
+      height: 230px;
+
+      background: #f1f1f1;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+    }
+
+    .product-image img {
+      width: 150px;
+      height: 180px;
+
+      object-fit: contain;
+
+      transition: 0.3s;
+    }
+
+    .product-card:hover img {
+      transform: scale(1.08);
+    }
+
+
+    /* DISCOUNT */
+
+    .discount-badge {
+      display: inline-block;
+
+      margin-top: 20px;
+
+      padding: 6px 14px;
+
+      background: #111;
+
+      color: white;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+
+      font-weight: bold;
+
+      letter-spacing: 1px;
+    }
+
+
+    /* PRODUCT NAME */
+
+    .product-card h2 {
+      font-size: 20px;
+
+      margin: 12px 0 5px;
+    }
+
+    .product-card p {
+      color: #777;
+
+      font-size: 14px;
+
+      margin-bottom: 12px;
+    }
+
+
+    /* PRICE */
+
+    .price {
+      margin-bottom: 18px;
+    }
+
+    .old-price {
+      color: #999;
+
+      text-decoration: line-through;
+
+      margin-right: 8px;
+    }
+
+    .new-price {
+      color: #b08d57;
+
+      font-size: 21px;
+
+      font-weight: bold;
+    }
+
+
+    /* BUTTON */
+
+    .shop-btn {
+      border: none;
+
+      padding: 11px 24px;
+
+      border-radius: 25px;
+
+      background: #111;
+
+      color: white;
+
+      font-weight: bold;
+
+      font-size: 12px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    .shop-btn:hover {
+      background: #b08d57;
+
+      transform: scale(1.05);
+    }
+
+
+    /* =====================
+       MOBILE
+    ===================== */
+
+    @media (max-width: 850px) {
+
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+    }
+
+    @media (max-width: 550px) {
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header h1 {
+        font-size: 30px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar">
+
+    <div class="logo">
+      𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃
+    </div>
+
+    <button class="back-btn" onclick="history.back()">
+      ← Back
+    </button>
+    
+
+  </nav>
+
+
+
+  <!-- HEADER -->
+
+  <section class="page-header">
+
+    <span>SPECIAL OFFER</span>
+
+    <h1>₹300 OFF</h1>
+
+    <p>
+      Get ₹300 OFF on orders above ₹1999
+    </p>
+
+  </section>
+
+
+
+  <!-- PRODUCTS -->
+
+  <section class="products">
+
+
+    <!-- PRODUCT 1 -->
+
+    <div class="product-card">
+
+      <div class="product-image">
+
+        <img src="img/pant.svg">
+
+      </div>
+
+      <span class="discount-badge">
+        ₹300 OFF
+      </span>
+
+      <h2>Premium Pants</h2>
+
+      <p>Classic men's premium pants</p>
+
+      <div class="price">
+
+        <span class="old-price">
+          ₹1,799
+        </span>
+
+        <span class="new-price">
+          ₹1,499
+        </span>
+
+      </div>
+
+      <button
+        class="shop-btn"
+        onclick="location.href='pants.html'">
+
+        SHOP NOW →
+
+      </button>
+
+    </div>
+
+
+
+    <!-- PRODUCT 2 -->
+
+    <div class="product-card">
+
+      <div class="product-image">
+
+        <img src="img/shirt.svg">
+
+      </div>
+
+      <span class="discount-badge">
+        ₹300 OFF
+      </span>
+
+      <h2>Premium Shirt</h2>
+
+      <p>Stylish men's casual shirt</p>
+
+      <div class="price">
+
+        <span class="old-price">
+          ₹1,999
+        </span>
+
+        <span class="new-price">
+          ₹1,699
+        </span>
+
+      </div>
+
+      <button
+        class="shop-btn"
+        onclick="location.href='shirts.html'">
+
+        SHOP NOW →
+
+      </button>
+
+    </div>
+
+
+
+    <!-- PRODUCT 3 -->
+
+    <div class="product-card">
+
+      <div class="product-image">
+
+        <img src="img/shoe.svg">
+
+      </div>
+
+      <span class="discount-badge">
+        ₹300 OFF
+      </span>
+
+      <h2>Premium Shoes</h2>
+
+      <p>Modern men's footwear</p>
+
+      <div class="price">
+
+        <span class="old-price">
+          ₹2,299
+        </span>
+
+        <span class="new-price">
+          ₹1,999
+        </span>
+
+      </div>
+
+      <button
+        class="shop-btn"
+        onclick="location.href='shoes.html'">
+
+        SHOP NOW →
+
+      </button>
+
+    </div>
+
+
+  </section>
+
+
+</body>
+</html>

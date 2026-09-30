@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃 | Men's Fashion</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+  <div class="nav-left">
+
+    <div class="logo">
+      𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃
+    </div>
+
+  </div>
+
+
+  <ul class="nav-links">
+
+    <li>
+      <a href="#">
+        Home
+      </a>
+    </li>
+
+    <li>
+      <a href="#products">
+        Products
+      </a>
+    </li>
+
+    <li>
+      <a href="new-arrivals.html">
+        New Arrivals
+      </a>
+    </li>
+
+    <li>
+      <a href="#offers">
+        Offers
+      </a>
+    </li>
+
+    <li>
+      <a href="#why-shop">
+        About
+      </a>
+    </li>
+
+  </ul>
+
+
+  <div class="nav-right">
+
+    <div
+      class="wishlist"
+      onclick="location.href='wishlist.html'"
+      title="Wishlist"
+    >
+
+      ❤️
+
+      <span id="wishlist-count">
+        0
+      </span>
+
+    </div>
+
+
+    <div
+      class="cart"
+      onclick="location.href='cart.html'"
+    >
+
+      🛒
+
+      <span id="cart-count">
+        0
+      </span>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <span class="hero-label">
+      PREMIUM MEN'S FASHION
+    </span>
+
+
+    <h1>
+      Elevate Your<br>
+      Everyday Style
+    </h1>
+
+
+    <p>
+      Discover premium shirts, pants, shoes,
+      hoodies and accessories designed for
+      the modern man.
+    </p>
+
+
+    <div class="hero-buttons">
+
+      <button
+        class="hero-btn primary"
+        onclick="location.href='#products'"
+      >
+
+        SHOP COLLECTION →
+
+      </button>
+
+
+      <button
+        class="hero-btn secondary"
+        onclick="location.href='new-arrivals.html'"
+      >
+
+        NEW ARRIVALS
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="search-section">
+
+  <div class="search-box">
+
+    <span>
+      🔍︎
+    </span>
+
+
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Search shirts, pants, shoes, hoodies..."
+      oninput="searchProducts()"
+      autocomplete="off"
+    >
+
+  </div>
+
+
+  <div
+    id="searchResults"
+    class="search-results"
+  ></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section
+  class="categories"
+  id="products"
+>
+
+
+  <div class="section-heading">
+
+    <span>
+      SHOP BY CATEGORY
+    </span>
+
+
+    <h2>
+      Find Your Style
+    </h2>
+
+  </div>
+
+
+  <div class="category-container">
+
+
+    <!-- PANTS -->
+
+    <div
+      class="category-card"
+      onclick="location.href='pants.html'"
+    >
+
+      <img
+        src="img/pant.svg"
+        class="category-icon"
+        alt="Pants"
+      >
+
+
+      <h3>
+        Pants
+      </h3>
+
+
+      <p>
+        Explore Collection →
+      </p>
+
+    </div>
+
+
+
+    <!-- SHIRTS -->
+
+    <div
+      class="category-card"
+      onclick="location.href='shirts.html'"
+    >
+
+      <img
+        src="img/shirt.svg"
+        class="category-icon"
+        alt="Shirts"
+      >
+
+
+      <h3>
+        Shirts
+      </h3>
+
+
+      <p>
+        Explore Collection →
+      </p>
+
+    </div>
+
+
+
+    <!-- SHOES -->
+
+    <div
+      class="category-card"
+      onclick="location.href='shoes.html'"
+    >
+
+      <img
+        src="img/shoe.svg"
+        class="category-icon"
+        alt="Shoes"
+      >
+
+
+      <h3>
+        Shoes
+      </h3>
+
+
+      <p>
+        Explore Collection →
+      </p>
+
+    </div>
+
+
+
+    <!-- HOODIES -->
+
+    <div
+      class="category-card"
+      onclick="location.href='hoodies.html'"
+    >
+
+      <img
+        src="img/hoodie.svg"
+        class="category-icon"
+        alt="Hoodies"
+      >
+
+
+      <h3>
+        Hoodies
+      </h3>
+
+
+      <p>
+        Explore Collection →
+      </p>
+
+    </div>
+
+
+
+    <!-- ACCESSORIES -->
+
+    <div
+      class="category-card"
+      onclick="location.href='accessories.html'"
+    >
+
+      <img
+        src="img/accs.svg"
+        class="category-icon"
+        alt="Accessories"
+      >
+
+
+      <h3>
+        Accessories
+      </h3>
+
+
+      <p>
+        Explore Collection →
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     NEW ARRIVALS
+===================================================== -->
+
+<section
+  class="new-arrivals"
+  id="new-arrivals"
+>
+
+
+  <div class="section-heading">
+
+    <span>
+      JUST DROPPED
+    </span>
+
+
+    <h2>
+      New Arrivals
+    </h2>
+
+
+    <p>
+      Fresh styles made for the modern wardrobe
+    </p>
+
+  </div>
+
+
+  <div
+    class="arrival-container"
+    id="arrivalContainer"
+  >
+
+    <div class="arrival-loading">
+      Loading new arrivals...
+    </div>
+
+  </div>
+
+
+  <div class="view-all-arrivals">
+
+    <button
+      onclick="location.href='new-arrivals.html'"
+    >
+
+      VIEW ALL NEW ARRIVALS →
+
+    </button>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OFFERS
+===================================================== -->
+
+<section
+  class="offers"
+  id="offers"
+>
+
+
+  <div class="offers-title">
+
+    <span>
+      LIMITED TIME
+    </span>
+
+
+    <h2>
+      Offers & Discounts
+    </h2>
+
+
+    <p>
+      Upgrade your style with exclusive deals
+    </p>
+
+  </div>
+
+
+  <div class="offer-container">
+
+
+    <!-- OFFER 2 -->
+
+    <div class="offer-card offer-two">
+
+      <div class="offer-content">
+
+        <span class="offer-badge">
+          SPECIAL DEAL
+        </span>
+
+
+        <h3>
+          ₹300
+          <small>OFF</small>
+        </h3>
+
+
+        <p>
+          On orders above ₹1999
+        </p>
+
+
+        <button
+          onclick="location.href='discount300.html'"
+        >
+
+          SHOP NOW →
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- OFFER 3 -->
+
+    <div class="offer-card offer-three">
+
+      <div class="offer-content">
+
+        <span class="offer-badge">
+          BEST VALUE
+        </span>
+
+
+        <h3>
+          UNDER
+          <small>₹999</small>
+        </h3>
+
+
+        <p>
+          Premium styles at special prices
+        </p>
+
+
+        <button
+          onclick="location.href='under999.html'"
+        >
+
+          SHOP NOW →
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHY SHOP
+===================================================== -->
+
+<section
+  class="why-shop"
+  id="why-shop"
+>
+
+
+  <div class="why-shop-title">
+
+    <span>
+      WHY TRENT
+    </span>
+
+
+    <h2>
+      Why Shop With Us?
+    </h2>
+
+
+    <p>
+      Everything you need for a better
+      shopping experience
+    </p>
+
+  </div>
+
+
+  <div class="why-shop-container">
+
+
+    <!-- DELIVERY -->
+
+    <div class="why-card">
+
+      <div class="why-icon">
+        🚚
+      </div>
+
+
+      <h3>
+        Fast & Secure Delivery
+      </h3>
+
+
+      <p>
+        Get your favorite styles delivered
+        safely and on time.
+      </p>
+
+    </div>
+
+
+
+    <!-- PAYMENT -->
+
+    <div class="why-card">
+
+      <div class="why-icon">
+        💳
+      </div>
+
+
+      <h3>
+        Secure Payments
+      </h3>
+
+
+      <p>
+        Shop confidently with safe and
+        secure payment options.
+      </p>
+
+    </div>
+
+
+
+    <!-- RETURNS -->
+
+    <div class="why-card">
+
+      <div class="why-icon">
+        🔄
+      </div>
+
+
+      <h3>
+        Easy Returns
+      </h3>
+
+
+      <p>
+        Simple and hassle-free returns
+        for a comfortable shopping experience.
+      </p>
+
+    </div>
+
+
+
+    <!-- QUALITY -->
+
+    <div class="why-card">
+
+      <div class="why-icon">
+        ✨
+      </div>
+
+
+      <h3>
+        Premium Quality
+      </h3>
+
+
+      <p>
+        Discover stylish products made
+        with quality and comfort in mind.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+  <div class="footer-container">
+
+
+    <!-- BRAND -->
+
+    <div class="footer-column footer-brand">
+
+      <h2>
+        𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃
+      </h2>
+
+
+      <p>
+        Elevate your style with premium
+        men's fashion, modern designs
+        and everyday essentials.
+      </p>
+
+
+      <div class="social-links">
+
+        <a href="#">
+          Instagram
+        </a>
+
+
+        <a href="#">
+          Facebook
+        </a>
+
+
+        <a href="#">
+          YouTube
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- QUICK LINKS -->
+
+    <div class="footer-column">
+
+      <h3>
+        QUICK LINKS
+      </h3>
+
+
+      <a href="#">
+        Home
+      </a>
+
+
+      <a href="#products">
+        Products
+      </a>
+
+
+      <a href="new-arrivals.html">
+        New Arrivals
+      </a>
+
+
+      <a href="#offers">
+        Offers
+      </a>
+
+
+      <a href="#why-shop">
+        About Us
+      </a>
+
+    </div>
+
+
+
+    <!-- SHOP -->
+
+    <div class="footer-column">
+
+      <h3>
+        SHOP
+      </h3>
+
+
+      <a href="shirts.html">
+        Shirts
+      </a>
+
+
+      <a href="pants.html">
+        Pants
+      </a>
+
+
+      <a href="shoes.html">
+        Shoes
+      </a>
+
+
+      <a href="hoodies.html">
+        Hoodies
+      </a>
+
+
+      <a href="accessories.html">
+        Accessories
+      </a>
+
+    </div>
+
+
+
+    <!-- CUSTOMER SERVICE -->
+
+    <div class="footer-column">
+
+      <h3>
+        CUSTOMER SERVICE
+      </h3>
+
+
+      <a href="#">
+        Shipping & Delivery
+      </a>
+
+
+      <a href="#">
+        Returns & Refunds
+      </a>
+
+
+      <a href="#">
+        Privacy Policy
+      </a>
+
+
+      <a href="#">
+        Terms & Conditions
+      </a>
+
+
+      <a href="#">
+        Help Center
+      </a>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =================================================
+       NEWSLETTER
+  ================================================== -->
+
+  <div class="footer-newsletter">
+
+    <h3>
+      Stay Updated
+    </h3>
+
+
+    <p>
+      Get updates about new arrivals
+      and exclusive offers.
+    </p>
+
+
+    <!-- NEWSLETTER FORM -->
+
+    <form
+      class="newsletter-box"
+      id="newsletterForm"
+    >
+
+      <input
+        type="email"
+        id="newsletterEmail"
+        name="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+
+
+      <button
+        type="submit"
+      >
+
+        SUBSCRIBE
+
+      </button>
+
+    </form>
+
+
+    <!-- MESSAGE -->
+
+    <p
+      id="newsletterMessage"
+      class="newsletter-message"
+    ></p>
+
+  </div>
+
+
+
+  <!-- FOOTER BOTTOM -->
+
+  <div class="footer-bottom">
+
+    <p>
+      © 2026 𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃.
+      All Rights Reserved.
+    </p>
+
+
+    <p>
+      Designed for modern men's fashion
+    </p>
+
+  </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     INDEX JAVASCRIPT
+===================================================== -->
+
+<script src="index.js"></script>
+
+
+</body>
+
+</html>

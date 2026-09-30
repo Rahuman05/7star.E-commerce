@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Product | TRENT CARD</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#f5f5f5;
+  color:#111;
+}
+
+.navbar{
+  height:70px;
+  background:#111;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7%;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.admin-title{
+  color:#b08d57;
+  font-size:14px;
+  font-weight:bold;
+  letter-spacing:2px;
+}
+
+.container{
+  width:90%;
+  max-width:800px;
+  margin:40px auto;
+}
+
+.form-box{
+  background:white;
+  padding:35px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.form-box h1{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.subtitle{
+  color:#777;
+  font-size:13px;
+  margin-bottom:30px;
+}
+
+.form-group{
+  margin-bottom:20px;
+}
+
+.form-group label{
+  display:block;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:13px 15px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:13px;
+  outline:none;
+  background:white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+  border-color:#b08d57;
+}
+
+.form-group textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.two-column{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.image-upload{
+  border:2px dashed #ddd;
+  border-radius:12px;
+  padding:25px;
+  text-align:center;
+  cursor:pointer;
+  display:block;
+}
+
+.image-upload:hover{
+  border-color:#b08d57;
+  background:#fffdf9;
+}
+
+.image-upload input{
+  display:none;
+}
+
+.upload-text{
+  color:#777;
+  font-size:13px;
+  line-height:1.6;
+}
+
+.upload-icon{
+  font-size:32px;
+  margin-bottom:8px;
+}
+
+.image-preview{
+  display:none;
+  margin-top:15px;
+  text-align:center;
+}
+
+.image-preview img{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid #ddd;
+}
+
+.file-name{
+  margin-top:8px;
+  color:#777;
+  font-size:12px;
+}
+
+.size-box{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.size-box label{
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:9px 13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  cursor:pointer;
+  font-size:12px;
+  font-weight:normal;
+  margin:0;
+}
+
+.size-box input{
+  width:auto;
+}
+
+.add-btn{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:10px;
+  background:#111;
+  color:white;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:10px;
+}
+
+.add-btn:hover{
+  background:#b08d57;
+}
+
+.add-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+.message{
+  margin-top:15px;
+  text-align:center;
+  font-size:13px;
+  font-weight:bold;
+  line-height:1.5;
+}
+
+@media(max-width:600px){
+
+  .navbar{
+    padding:0 20px;
+  }
+
+  .logo{
+    font-size:17px;
+  }
+
+  .admin-title{
+    font-size:10px;
+  }
+
+  .container{
+    width:95%;
+    margin:25px auto;
+  }
+
+  .form-box{
+    padding:22px;
+  }
+
+  .two-column{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+  <div class="logo">
+    𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃
+  </div>
+
+  <div class="admin-title">
+    ADD PRODUCT
+  </div>
+
+</nav>
+
+<main class="container">
+
+<div class="form-box">
+
+<h1>Add New Product</h1>
+
+<p class="subtitle">
+Add a new product to TRENT CARD
+</p>
+
+<form id="productForm">
+
+<div class="form-group">
+
+<label>PRODUCT NAME</label>
+
+<input
+  type="text"
+  id="productName"
+  placeholder="Example: Premium Blue Shirt"
+  required
+>
+
+</div>
+
+<div class="two-column">
+
+<div class="form-group">
+
+<label>CATEGORY</label>
+
+<select id="category" required>
+
+<option value="">Select Category</option>
+<option value="Shirts">Shirts</option>
+<option value="Pants">Pants</option>
+<option value="Shoes">Shoes</option>
+<option value="Hoodies">Hoodies</option>
+<option value="Others">Others</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>PRICE (₹)</label>
+
+<input
+  type="number"
+  id="price"
+  placeholder="1699"
+  min="0"
+  required
+>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>PRODUCT IMAGE</label>
+
+<label class="image-upload">
+
+<input
+  type="file"
+  id="imageFile"
+  accept=".jpg,.jpeg,.png,.webp,.gif,.avif,image/*"
+  required
+>
+
+<div class="upload-icon">🖼️</div>
+
+<div class="upload-text">
+
+<strong>Click to choose product image</strong>
+
+<br>
+
+JPG, JPEG, PNG, WEBP, GIF, AVIF
+<br>
+Maximum 5MB
+
+</div>
+
+</label>
+
+<div class="image-preview" id="imagePreview">
+
+<img
+  id="previewImage"
+  src=""
+  alt="Product Preview"
+>
+
+<div class="file-name" id="fileName"></div>
+
+</div>
+
+</div>
+
+<div class="form-group">
+
+<label>DESCRIPTION</label>
+
+<textarea
+  id="description"
+  placeholder="Enter product description..."
+></textarea>
+
+</div>
+
+<div class="form-group" id="sizesGroup">
+
+<label id="sizesLabel">
+AVAILABLE SIZES
+</label>
+
+<div class="size-box" id="sizeContainer"></div>
+
+</div>
+
+<div class="form-group">
+
+<label>STOCK</label>
+
+<input
+  type="number"
+  id="stock"
+  placeholder="20"
+  min="0"
+  value="0"
+  required
+>
+
+</div>
+
+<button
+  type="submit"
+  class="add-btn"
+  id="addBtn"
+>
+ADD PRODUCT
+</button>
+
+<div class="message" id="message"></div>
+
+</form>
+
+</div>
+
+</main>
+
+<script>
+
+const API_URL = "http://localhost:5000";
+
+/* =========================
+   CHECK LOGIN
+========================= */
+
+async function checkLogin(){
+
+  const token =
+    localStorage.getItem("trentAdminToken");
+
+  if(!token){
+
+    window.location.replace("admin-login.html");
+
+    return false;
+  }
+
+  try{
+
+    const response = await fetch(
+      API_URL + "/api/admin/check",
+      {
+        method:"GET",
+        headers:{
+          "x-admin-token":token
+        }
+      }
+    );
+
+    if(!response.ok){
+
+      localStorage.removeItem("trentAdminToken");
+
+      window.location.replace("admin-login.html");
+
+      return false;
+    }
+
+    return true;
+
+  }
+  catch(error){
+
+    console.error("AUTH CHECK ERROR:",error);
+
+    alert(
+      "Backend server is not running."
+    );
+
+    return false;
+  }
+}
+
+
+/* ELEMENTS */
+
+const productForm =
+  document.getElementById("productForm");
+
+const productName =
+  document.getElementById("productName");
+
+const categorySelect =
+  document.getElementById("category");
+
+const price =
+  document.getElementById("price");
+
+const imageFile =
+  document.getElementById("imageFile");
+
+const description =
+  document.getElementById("description");
+
+const stock =
+  document.getElementById("stock");
+
+const imagePreview =
+  document.getElementById("imagePreview");
+
+const previewImage =
+  document.getElementById("previewImage");
+
+const fileName =
+  document.getElementById("fileName");
+
+const sizeContainer =
+  document.getElementById("sizeContainer");
+
+const sizesGroup =
+  document.getElementById("sizesGroup");
+
+const sizesLabel =
+  document.getElementById("sizesLabel");
+
+const addBtn =
+  document.getElementById("addBtn");
+
+const message =
+  document.getElementById("message");
+
+
+function showMessage(text,color="#111"){
+
+  message.innerText = text;
+  message.style.color = color;
+
+}
+
+
+/* IMAGE PREVIEW */
+
+imageFile.addEventListener("change",function(){
+
+  const file = this.files[0];
+
+  if(!file){
+
+    imagePreview.style.display="none";
+    return;
+  }
+
+  if(!file.type.startsWith("image/")){
+
+    alert("Please select an image file.");
+
+    this.value="";
+
+    return;
+  }
+
+  if(file.size > 5 * 1024 * 1024){
+
+    alert("Image must be less than 5MB.");
+
+    this.value="";
+
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload=function(event){
+
+    previewImage.src=event.target.result;
+    fileName.innerText=file.name;
+    imagePreview.style.display="block";
+
+  };
+
+  reader.readAsDataURL(file);
+
+});
+
+
+/* SIZE OPTIONS */
+
+function createSizeOptions(){
+
+  const category =
+    categorySelect.value;
+
+  sizeContainer.innerHTML="";
+
+  if(!category){
+
+    sizesGroup.style.display="block";
+    return;
+  }
+
+  if(category==="Others"){
+
+    sizesGroup.style.display="none";
+    return;
+  }
+
+  sizesGroup.style.display="block";
+
+  let sizes=[];
+
+  if(
+    category==="Shirts" ||
+    category==="Hoodies"
+  ){
+
+    sizes=[
+      "S","M","L","XL","XXL"
+    ];
+
+  }
+  else if(category==="Pants"){
+
+    sizes=[
+      "28","30","32","34","36","38","40"
+    ];
+
+  }
+  else if(category==="Shoes"){
+
+    sizes=[
+      "6","7","8","9","10","11"
+    ];
+
+  }
+
+  sizes.forEach(function(size){
+
+    const label =
+      document.createElement("label");
+
+    const checkbox =
+      document.createElement("input");
+
+    checkbox.type="checkbox";
+    checkbox.value=size;
+
+    if(category==="Shoes"){
+
+      checkbox.checked=true;
+
+    }
+    else if(size!=="XXL"){
+
+      checkbox.checked=true;
+
+    }
+
+    label.appendChild(checkbox);
+
+    label.appendChild(
+      document.createTextNode(
+        category==="Shoes"
+        ? " Size "+size
+        : " "+size
+      )
+    );
+
+    sizeContainer.appendChild(label);
+
+  });
+
+}
+
+categorySelect.addEventListener(
+  "change",
+  createSizeOptions
+);
+
+createSizeOptions();
+
+
+/* =========================
+   ADD PRODUCT
+========================= */
+
+productForm.addEventListener(
+"submit",
+async function(event){
+
+  event.preventDefault();
+
+  const token =
+    localStorage.getItem("trentAdminToken");
+
+  if(!token){
+
+    window.location.replace(
+      "admin-login.html"
+    );
+
+    return;
+  }
+
+  const selectedCategory =
+    categorySelect.value;
+
+  const sizes =
+    Array.from(
+      sizeContainer.querySelectorAll(
+        'input[type="checkbox"]:checked'
+      )
+    ).map(
+      input => input.value
+    );
+
+  if(
+    selectedCategory!=="Others" &&
+    sizes.length===0
+  ){
+
+    showMessage(
+      "❌ Please select at least one size.",
+      "#c62828"
+    );
+
+    return;
+  }
+
+  const file =
+    imageFile.files[0];
+
+  if(!file){
+
+    showMessage(
+      "❌ Please select a product image.",
+      "#c62828"
+    );
+
+    return;
+  }
+
+  addBtn.disabled=true;
+
+  showMessage(
+    "Uploading image...",
+    "#777"
+  );
+
+  try{
+
+    /* =========================
+       UPLOAD IMAGE
+    ========================= */
+
+    const formData =
+      new FormData();
+
+    formData.append("image",file);
+
+    const uploadResponse =
+      await fetch(
+        API_URL + "/api/upload",
+        {
+          method:"POST",
+          headers:{
+            "x-admin-token":token
+          },
+          body:formData
+        }
+      );
+
+    const uploadData =
+      await uploadResponse.json();
+
+    console.log(
+      "UPLOAD:",
+      uploadData
+    );
+
+    if(
+      uploadResponse.status===401
+    ){
+
+      localStorage.removeItem(
+        "trentAdminToken"
+      );
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      window.location.replace(
+        "admin-login.html"
+      );
+
+      return;
+    }
+
+    if(
+      !uploadResponse.ok ||
+      !uploadData.success
+    ){
+
+      throw new Error(
+        uploadData.message ||
+        "Image upload failed"
+      );
+
+    }
+
+    /* =========================
+       PRODUCT DATA
+    ========================= */
+
+    const productData={
+
+      name:
+        productName.value.trim(),
+
+      category:
+        selectedCategory,
+
+      price:
+        Number(price.value),
+
+      image:
+        uploadData.image,
+
+      description:
+        description.value.trim(),
+
+      sizes:
+        selectedCategory==="Others"
+        ? []
+        : sizes,
+
+      stock:
+        Number(stock.value)
+
+    };
+
+    showMessage(
+      "Image uploaded. Saving product...",
+      "#777"
+    );
+
+    /* =========================
+       SAVE PRODUCT
+    ========================= */
+
+    const response =
+      await fetch(
+        API_URL + "/api/products",
+        {
+          method:"POST",
+
+          headers:{
+            "Content-Type":
+              "application/json",
+
+            "x-admin-token":
+              token
+          },
+
+          body:
+            JSON.stringify(productData)
+        }
+      );
+
+    const data =
+      await response.json();
+
+    console.log(
+      "PRODUCT SAVE:",
+      data
+    );
+
+    if(response.status===401){
+
+      localStorage.removeItem(
+        "trentAdminToken"
+      );
+
+      alert(
+        "Admin session expired. Please login again."
+      );
+
+      window.location.replace(
+        "admin-login.html"
+      );
+
+      return;
+    }
+
+    if(
+      !response.ok ||
+      !data.success
+    ){
+
+      throw new Error(
+        data.message ||
+        "Failed to add product"
+      );
+
+    }
+
+    /* =========================
+       SUCCESS
+    ========================= */
+
+    showMessage(
+      "✅ Product added successfully!",
+      "#2e7d32"
+    );
+
+    addBtn.innerText =
+      "PRODUCT ADDED ✓";
+
+    console.log(
+      "PRODUCT SAVED:",
+      data.product
+    );
+
+    /*
+      DIRECT REDIRECT
+      No setTimeout
+    */
+
+    window.location.assign(
+      "admin-products.html"
+    );
+
+  }
+  catch(error){
+
+    console.error(
+      "PRODUCT ERROR:",
+      error
+    );
+
+    showMessage(
+      "❌ " + error.message,
+      "#c62828"
+    );
+
+    addBtn.disabled=false;
+
+    addBtn.innerText=
+      "ADD PRODUCT";
+
+  }
+
+});
+
+
+/* =========================
+   START AUTH CHECK
+========================= */
+
+checkLogin();
+
+</script>
+
+</body>
+</html>

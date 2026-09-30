@@ -1,0 +1,2748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Orders | TRENT CARD</title>
+
+    <!-- CHART.JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#f5f5f5;
+            color:#111;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar{
+            height:70px;
+            background:#111;
+            color:#fff;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 7%;
+            box-shadow:0 4px 15px rgba(0,0,0,.15);
+        }
+
+        .logo{
+            font-size:22px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+
+        .admin-title{
+            color:#b08d57;
+            font-size:14px;
+            font-weight:bold;
+            letter-spacing:2px;
+        }
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container{
+            width:90%;
+            max-width:1400px;
+            margin:40px auto;
+        }
+
+        .page-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:30px;
+            gap:20px;
+            flex-wrap:wrap;
+        }
+
+        .page-header h1{
+            font-size:32px;
+            letter-spacing:1px;
+        }
+
+        .page-header p{
+            margin-top:8px;
+            color:#777;
+        }
+
+        .refresh-btn{
+            border:none;
+            background:#111;
+            color:#fff;
+            padding:12px 20px;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:bold;
+        }
+
+        .refresh-btn:hover{
+            background:#b08d57;
+        }
+
+        /* =========================
+           ORDER STATS
+        ========================= */
+
+        .stats{
+            display:grid;
+            grid-template-columns:repeat(6,1fr);
+            gap:18px;
+            margin-bottom:35px;
+        }
+
+        .stat-card{
+            background:#fff;
+            border-radius:16px;
+            padding:22px;
+            border:1px solid rgba(176,141,87,.20);
+            box-shadow:0 8px 25px rgba(0,0,0,.06);
+        }
+
+        .stat-card h3{
+            font-size:13px;
+            color:#777;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            margin-bottom:12px;
+        }
+
+        .stat-card .number{
+            font-size:28px;
+            font-weight:bold;
+        }
+
+        .gold{
+            color:#b08d57;
+        }
+
+        /* =========================
+           TOOLBAR
+        ========================= */
+
+        .toolbar{
+            background:#fff;
+            padding:20px;
+            border-radius:16px;
+            margin-bottom:20px;
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+            box-shadow:0 8px 25px rgba(0,0,0,.05);
+        }
+
+        .toolbar input,
+        .toolbar select{
+            padding:12px 15px;
+            border:1px solid #ddd;
+            border-radius:8px;
+            outline:none;
+            background:#fff;
+        }
+
+        .toolbar input{
+            flex:1;
+            min-width:250px;
+        }
+
+        .order-count{
+            margin-bottom:15px;
+            color:#666;
+            font-size:14px;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-container{
+            background:#fff;
+            border-radius:16px;
+            overflow-x:auto;
+            box-shadow:0 8px 25px rgba(0,0,0,.05);
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            min-width:1200px;
+        }
+
+        th{
+            background:#111;
+            color:#fff;
+            padding:15px;
+            text-align:left;
+            font-size:12px;
+            text-transform:uppercase;
+            letter-spacing:.5px;
+        }
+
+        td{
+            padding:14px 15px;
+            border-bottom:1px solid #eee;
+            font-size:13px;
+            vertical-align:top;
+        }
+
+        tr:hover td{
+            background:#faf8f3;
+        }
+
+        .status-select{
+            padding:8px;
+            border-radius:7px;
+            border:1px solid #ddd;
+            cursor:pointer;
+        }
+
+        .view-btn{
+            border:none;
+            background:#111;
+            color:#fff;
+            padding:8px 12px;
+            border-radius:7px;
+            cursor:pointer;
+            font-size:12px;
+        }
+
+        .view-btn:hover{
+            background:#b08d57;
+        }
+
+        .action-buttons{
+            display:flex;
+            align-items:center;
+            gap:7px;
+            flex-wrap:wrap;
+        }
+
+        .delete-btn{
+            border:none;
+            background:#c62828;
+            color:#fff;
+            padding:8px 12px;
+            border-radius:7px;
+            cursor:pointer;
+            font-size:12px;
+            font-weight:bold;
+            transition:.25s ease;
+        }
+
+        .delete-btn:hover{
+            background:#991f1f;
+            transform:translateY(-1px);
+        }
+
+        .delete-btn:disabled{
+            opacity:.6;
+            cursor:not-allowed;
+            transform:none;
+        }
+
+        .empty{
+            text-align:center;
+            padding:50px;
+            color:#777;
+        }
+
+        /* =========================
+           VISITOR ANALYTICS
+        ========================= */
+
+        .analytics-title{
+            margin-top:55px;
+            margin-bottom:22px;
+        }
+
+        .analytics-title h2{
+            font-size:26px;
+            margin-bottom:8px;
+        }
+
+        .analytics-title p{
+            color:#777;
+        }
+
+        .visitor-grid{
+            display:grid;
+            grid-template-columns:repeat(6,1fr);
+            gap:18px;
+            margin-bottom:30px;
+        }
+
+        .visitor-card{
+            background:#fff;
+            border-radius:16px;
+            padding:22px;
+            border:1px solid rgba(176,141,87,.20);
+            box-shadow:0 8px 25px rgba(0,0,0,.06);
+        }
+
+        .visitor-card .icon{
+            font-size:24px;
+            margin-bottom:12px;
+        }
+
+        .visitor-card h3{
+            font-size:12px;
+            color:#777;
+            text-transform:uppercase;
+            letter-spacing:1px;
+            margin-bottom:10px;
+        }
+
+        .visitor-number{
+            font-size:28px;
+            font-weight:bold;
+            color:#b08d57;
+        }
+
+        /* =========================
+           CHART
+        ========================= */
+
+        .visitor-chart-box{
+            background:#fff;
+            border-radius:18px;
+            padding:25px;
+            margin-bottom:45px;
+            border:1px solid rgba(176,141,87,.20);
+            box-shadow:0 8px 25px rgba(0,0,0,.06);
+        }
+
+        .chart-header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            margin-bottom:25px;
+        }
+
+        .chart-header h3{
+            font-size:21px;
+            margin-bottom:6px;
+        }
+
+        .chart-header p{
+            color:#777;
+            font-size:14px;
+        }
+
+        .chart-container{
+            position:relative;
+            width:100%;
+            height:350px;
+        }
+
+        .chart-error{
+            display:none;
+            height:100%;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            color:#777;
+            font-size:14px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,.65);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+            z-index:9999;
+        }
+
+        .modal.active{
+            display:flex;
+        }
+
+        .modal-box{
+            width:100%;
+            max-width:700px;
+            max-height:90vh;
+            overflow-y:auto;
+            background:#fff;
+            border-radius:20px;
+            padding:30px;
+            position:relative;
+        }
+
+        .modal-box h2{
+            margin-bottom:20px;
+        }
+
+        .close-btn{
+            position:absolute;
+            right:20px;
+            top:18px;
+            width:35px;
+            height:35px;
+            border:none;
+            border-radius:50%;
+            background:#111;
+            color:#fff;
+            cursor:pointer;
+            font-size:18px;
+        }
+
+        .detail-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:15px;
+        }
+
+        .detail-item{
+            background:#f7f7f7;
+            padding:15px;
+            border-radius:10px;
+        }
+
+        .detail-item.full{
+            grid-column:1/-1;
+        }
+
+        .detail-item small{
+            display:block;
+            color:#888;
+            margin-bottom:5px;
+            font-size:11px;
+            text-transform:uppercase;
+        }
+
+        .detail-item strong{
+            word-break:break-word;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:1200px){
+
+            .stats{
+                grid-template-columns:repeat(3,1fr);
+            }
+
+            .visitor-grid{
+                grid-template-columns:repeat(3,1fr);
+            }
+
+        }
+
+        @media(max-width:700px){
+
+            .navbar{
+                padding:0 5%;
+            }
+
+            .admin-title{
+                font-size:11px;
+            }
+
+            .container{
+                width:94%;
+            }
+
+            .stats{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .visitor-grid{
+                grid-template-columns:repeat(2,1fr);
+            }
+
+            .detail-grid{
+                grid-template-columns:1fr;
+            }
+
+            .action-buttons{
+                flex-direction:column;
+                align-items:stretch;
+            }
+
+            .action-buttons .view-btn,
+            .action-buttons .delete-btn{
+                width:100%;
+            }
+
+            .detail-item.full{
+                grid-column:auto;
+            }
+
+            .visitor-chart-box{
+                padding:18px;
+            }
+
+            .chart-container{
+                height:280px;
+            }
+
+        }
+
+        @media(max-width:450px){
+
+            .stats,
+            .visitor-grid{
+                grid-template-columns:1fr;
+            }
+
+            .chart-container{
+                height:250px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃
+    </div>
+
+    <div class="admin-title">
+        ADMIN ORDERS
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <div class="page-header">
+
+        <div>
+
+            <h1>
+                Orders Dashboard
+            </h1>
+
+            <p>
+                Manage and monitor customer orders
+            </p>
+
+        </div>
+
+        <button
+            class="refresh-btn"
+            onclick="refreshAll()"
+        >
+            ↻ Refresh
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         ORDER STATS
+    ========================= -->
+
+    <section class="stats">
+
+        <div class="stat-card">
+
+            <h3>
+                Total Orders
+            </h3>
+
+            <div
+                class="number"
+                id="totalOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Total Sales
+            </h3>
+
+            <div
+                class="number gold"
+                id="totalSales"
+            >
+                ₹0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Pending
+            </h3>
+
+            <div
+                class="number"
+                id="pendingOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Shipped
+            </h3>
+
+            <div
+                class="number"
+                id="shippedOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Delivered
+            </h3>
+
+            <div
+                class="number"
+                id="deliveredOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <h3>
+                Cancelled
+            </h3>
+
+            <div
+                class="number"
+                id="cancelledOrders"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <section class="toolbar">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search customer, phone, product, order ID..."
+            oninput="filterOrders()"
+        >
+
+        <select
+            id="statusFilter"
+            onchange="filterOrders()"
+        >
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="Pending">
+                Pending
+            </option>
+
+            <option value="Confirmed">
+                Confirmed
+            </option>
+
+            <option value="Shipped">
+                Shipped
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+            <option value="Cancelled">
+                Cancelled
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <div
+        class="order-count"
+        id="orderCount"
+    >
+        Showing 0 orders
+    </div>
+
+
+    <!-- =========================
+         ORDERS TABLE
+    ========================= -->
+
+    <section class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Size</th>
+                    <th>Qty</th>
+                    <th>Address</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="ordersBody">
+
+                <tr>
+
+                    <td
+                        colspan="12"
+                        class="empty"
+                    >
+                        Loading orders...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+
+    <!-- =========================
+         VISITOR ANALYTICS
+    ========================= -->
+
+    <div class="analytics-title">
+
+        <h2>
+            Visitor Analytics
+        </h2>
+
+        <p>
+            Website visitor statistics
+        </p>
+
+    </div>
+
+
+    <section class="visitor-grid">
+
+
+        <div class="visitor-card">
+
+            <div class="icon">
+                👥
+            </div>
+
+            <h3>
+                Total Visits
+            </h3>
+
+            <div
+                class="visitor-number"
+                id="totalVisits"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="visitor-card">
+
+            <div class="icon">
+                👤
+            </div>
+
+            <h3>
+                Unique Visitors
+            </h3>
+
+            <div
+                class="visitor-number"
+                id="uniqueVisitors"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="visitor-card">
+
+            <div class="icon">
+                📅
+            </div>
+
+            <h3>
+                Today Visits
+            </h3>
+
+            <div
+                class="visitor-number"
+                id="todayVisits"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="visitor-card">
+
+            <div class="icon">
+                🧑
+            </div>
+
+            <h3>
+                Today Visitors
+            </h3>
+
+            <div
+                class="visitor-number"
+                id="todayVisitors"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="visitor-card">
+
+            <div class="icon">
+                📊
+            </div>
+
+            <h3>
+                Month Visits
+            </h3>
+
+            <div
+                class="visitor-number"
+                id="monthVisits"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="visitor-card">
+
+            <div class="icon">
+                🗓️
+            </div>
+
+            <h3>
+                Month Visitors
+            </h3>
+
+            <div
+                class="visitor-number"
+                id="monthVisitors"
+            >
+                0
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LAST 7 DAYS
+    ========================= -->
+
+    <section class="visitor-chart-box">
+
+        <div class="chart-header">
+
+            <div>
+
+                <h3>
+                    Last 7 Days
+                </h3>
+
+                <p>
+                    Website visits and unique visitors
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="chart-container">
+
+            <canvas id="visitorChart"></canvas>
+
+            <div
+                class="chart-error"
+                id="chartError"
+            >
+                Unable to load visitor chart.
+                <br>
+                Please check the backend server.
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================
+     ORDER MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="orderModal"
+    onclick="closeModalOutside(event)"
+>
+
+    <div class="modal-box">
+
+        <button
+            class="close-btn"
+            onclick="closeOrderModal()"
+        >
+            ×
+        </button>
+
+        <h2>
+            Order Details
+        </h2>
+
+        <div
+            class="detail-grid"
+            id="orderDetails"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GLOBAL VARIABLES
+===================================================== */
+
+let allOrders = [];
+
+let visitorChart = null;
+
+
+/* =====================================================
+   ADMIN TOKEN
+===================================================== */
+
+function getAdminToken(){
+
+    return localStorage.getItem(
+        "trentAdminToken"
+    );
+
+}
+
+
+/* =====================================================
+   ADMIN SESSION
+===================================================== */
+
+function checkAdminSession(){
+
+    const token =
+        getAdminToken();
+
+    if(!token){
+
+        alert(
+            "Admin login required."
+        );
+
+        window.location.href =
+            "admin-login.html";
+
+        return false;
+
+    }
+
+    return true;
+
+}
+
+
+/* =====================================================
+   LOAD ORDERS
+===================================================== */
+
+async function loadOrders(){
+
+    const ordersBody =
+        document.getElementById(
+            "ordersBody"
+        );
+
+    const token =
+        getAdminToken();
+
+
+    if(!token){
+
+        ordersBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="12"
+                    class="empty"
+                >
+                    Admin login required.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/orders",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "x-admin-token":
+                            token
+                    }
+                }
+            );
+
+
+        if(response.status === 401){
+
+            localStorage.removeItem(
+                "trentAdminToken"
+            );
+
+            ordersBody.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="12"
+                        class="empty"
+                    >
+                        Admin session expired.
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            throw new Error(
+                data.message ||
+                "Failed to load orders"
+            );
+
+        }
+
+
+        allOrders =
+            Array.isArray(data.orders)
+                ? data.orders
+                : [];
+
+
+        updateOrderStats();
+
+        filterOrders();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "❌ Load Orders Error:",
+            error
+        );
+
+
+        ordersBody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="12"
+                    class="empty"
+                >
+
+                    Unable to load orders.
+
+                    <br><br>
+
+                    ${escapeHTML(
+                        error.message
+                    )}
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+   ORDER STATS
+===================================================== */
+
+function updateOrderStats(){
+
+    const total =
+        allOrders.length;
+
+    let totalSales = 0;
+    let pending = 0;
+    let shipped = 0;
+    let delivered = 0;
+    let cancelled = 0;
+
+
+    allOrders.forEach(
+        function(order){
+
+            const price =
+                Number(
+                    order.price || 0
+                );
+
+            const quantity =
+                Number(
+                    order.quantity || 1
+                );
+
+
+            totalSales +=
+                price * quantity;
+
+
+            if(order.status === "Pending"){
+                pending++;
+            }
+
+            if(order.status === "Shipped"){
+                shipped++;
+            }
+
+            if(order.status === "Delivered"){
+                delivered++;
+            }
+
+            if(order.status === "Cancelled"){
+                cancelled++;
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalOrders"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "totalSales"
+    ).textContent =
+        "₹" +
+        totalSales.toLocaleString(
+            "en-IN"
+        );
+
+
+    document.getElementById(
+        "pendingOrders"
+    ).textContent =
+        pending;
+
+
+    document.getElementById(
+        "shippedOrders"
+    ).textContent =
+        shipped;
+
+
+    document.getElementById(
+        "deliveredOrders"
+    ).textContent =
+        delivered;
+
+
+    document.getElementById(
+        "cancelledOrders"
+    ).textContent =
+        cancelled;
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function filterOrders(){
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const status =
+        document.getElementById(
+            "statusFilter"
+        ).value;
+
+
+    const filtered =
+        allOrders.filter(
+            function(order){
+
+                const orderId =
+                    String(
+                        order._id || ""
+                    ).toLowerCase();
+
+
+                const customer =
+                    String(
+                        order.fullName || ""
+                    ).toLowerCase();
+
+
+                const phone =
+                    String(
+                        order.phone || ""
+                    ).toLowerCase();
+
+
+                const product =
+                    String(
+                        order.product || ""
+                    ).toLowerCase();
+
+
+                const matchesSearch =
+                    !search ||
+                    orderId.includes(search) ||
+                    customer.includes(search) ||
+                    phone.includes(search) ||
+                    product.includes(search);
+
+
+                const matchesStatus =
+                    status === "all" ||
+                    order.status === status;
+
+
+                return (
+                    matchesSearch &&
+                    matchesStatus
+                );
+
+            }
+        );
+
+
+    renderOrders(filtered);
+
+}
+
+
+/* =====================================================
+   RENDER ORDERS
+===================================================== */
+
+function renderOrders(orders){
+
+    const body =
+        document.getElementById(
+            "ordersBody"
+        );
+
+
+    document.getElementById(
+        "orderCount"
+    ).textContent =
+        "Showing " +
+        orders.length +
+        " of " +
+        allOrders.length +
+        " orders";
+
+
+    if(orders.length === 0){
+
+        body.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="12"
+                    class="empty"
+                >
+                    No orders found.
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    body.innerHTML = "";
+
+
+    orders.forEach(
+        function(order){
+
+            const row =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const date =
+                order.createdAt
+                    ? new Date(
+                        order.createdAt
+                    ).toLocaleString(
+                        "en-IN"
+                    )
+                    : "-";
+
+
+            const orderId =
+                String(
+                    order._id || ""
+                );
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(
+                        orderId.substring(0,8)
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        order.fullName || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        order.phone || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        order.product ||
+                        "Premium Pants"
+                    )}
+                </td>
+
+                <td>
+                    ₹${Number(
+                        order.price || 0
+                    ).toLocaleString(
+                        "en-IN"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        order.size || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        String(
+                            order.quantity || 1
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        order.address || "-"
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        order.paymentMethod || "-"
+                    )}
+                </td>
+
+                <td>
+
+                    <select
+                        class="status-select"
+                        onchange="updateStatus(
+                            '${orderId}',
+                            this.value
+                        )"
+                    >
+
+                        <option
+                            value="Pending"
+                            ${
+                                order.status === "Pending"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Pending
+                        </option>
+
+                        <option
+                            value="Confirmed"
+                            ${
+                                order.status === "Confirmed"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Confirmed
+                        </option>
+
+                        <option
+                            value="Shipped"
+                            ${
+                                order.status === "Shipped"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Shipped
+                        </option>
+
+                        <option
+                            value="Delivered"
+                            ${
+                                order.status === "Delivered"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Delivered
+                        </option>
+
+                        <option
+                            value="Cancelled"
+                            ${
+                                order.status === "Cancelled"
+                                ? "selected"
+                                : ""
+                            }
+                        >
+                            Cancelled
+                        </option>
+
+                    </select>
+
+                </td>
+
+                <td>
+
+                    <div class="action-buttons">
+
+                        <button
+                            class="view-btn"
+                            onclick="showOrderDetails(
+                                '${orderId}'
+                            )"
+                        >
+                            View
+                        </button>
+
+                        <button
+                            class="delete-btn"
+                            onclick="deleteOrder(
+                                '${orderId}'
+                            )"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                </td>
+
+                <td>
+                    ${escapeHTML(date)}
+                </td>
+
+            `;
+
+
+            body.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   UPDATE STATUS
+===================================================== */
+
+async function updateStatus(
+    orderId,
+    newStatus
+){
+
+    const token =
+        getAdminToken();
+
+
+    if(!token){
+
+        alert(
+            "Admin login required."
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/orders/" +
+                orderId +
+                "/status",
+                {
+                    method:"PATCH",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json",
+
+                        "x-admin-token":
+                            token
+                    },
+
+                    body:JSON.stringify({
+                        status:newStatus
+                    })
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            throw new Error(
+                data.message ||
+                "Status update failed"
+            );
+
+        }
+
+
+        const order =
+            allOrders.find(
+                function(item){
+
+                    return item._id === orderId;
+
+                }
+            );
+
+
+        if(order){
+
+            order.status =
+                newStatus;
+
+        }
+
+
+        updateOrderStats();
+
+        filterOrders();
+
+    }
+
+    catch(error){
+
+        console.error(
+            "❌ Status Update Error:",
+            error
+        );
+
+        alert(
+            error.message
+        );
+
+        loadOrders();
+
+    }
+
+}
+
+
+/* =====================================================
+   DELETE ORDER
+===================================================== */
+
+async function deleteOrder(orderId){
+
+    const token =
+        getAdminToken();
+
+    if(!token){
+
+        alert(
+            "Admin login required."
+        );
+
+        return;
+
+    }
+
+    const order =
+        allOrders.find(
+            function(item){
+
+                return item._id === orderId;
+
+            }
+        );
+
+    const customerName =
+        order && order.fullName
+            ? order.fullName
+            : "this order";
+
+    const confirmed =
+        confirm(
+            "Are you sure you want to delete the order for " +
+            customerName +
+           "?\n\nThis action cannot be undone."
+        );
+
+    if(!confirmed){
+
+        return;
+
+    }
+
+    try{
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/orders/" +
+                orderId,
+                {
+                    method:"DELETE",
+
+                    headers:{
+                        "x-admin-token":
+                            token
+                    }
+                }
+            );
+
+        const data =
+            await response.json();
+
+        if(response.status === 401){
+
+            localStorage.removeItem(
+                "trentAdminToken"
+            );
+
+            alert(
+                "Admin session expired. Please login again."
+            );
+
+            window.location.href =
+                "admin-login.html";
+
+            return;
+
+        }
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            throw new Error(
+                data.message ||
+                "Order delete failed"
+            );
+
+        }
+
+        allOrders =
+            allOrders.filter(
+                function(item){
+
+                    return item._id !== orderId;
+
+                }
+            );
+
+        updateOrderStats();
+
+        filterOrders();
+
+        alert(
+            "Order deleted successfully! 🗑️"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "❌ Delete Order Error:",
+            error
+        );
+
+        alert(
+            error.message ||
+            "Failed to delete order."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ORDER DETAILS
+===================================================== */
+
+function showOrderDetails(orderId){
+
+    const order =
+        allOrders.find(
+            function(item){
+
+                return item._id === orderId;
+
+            }
+        );
+
+
+    if(!order){
+
+        return;
+
+    }
+
+
+    const date =
+        order.createdAt
+            ? new Date(
+                order.createdAt
+            ).toLocaleString(
+                "en-IN"
+            )
+            : "-";
+
+
+    document.getElementById(
+        "orderDetails"
+    ).innerHTML = `
+
+        <div class="detail-item">
+
+            <small>Order ID</small>
+
+            <strong>
+                ${escapeHTML(
+                    order._id || "-"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Customer</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.fullName || "-"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Phone</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.phone || "-"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Product</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.product ||
+                    "Premium Pants"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Price</small>
+
+            <strong>
+                ₹${Number(
+                    order.price || 0
+                ).toLocaleString(
+                    "en-IN"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Size</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.size || "-"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Quantity</small>
+
+            <strong>
+                ${escapeHTML(
+                    String(
+                        order.quantity || 1
+                    )
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Payment</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.paymentMethod || "-"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Status</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.status || "-"
+                )}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <small>Date</small>
+
+            <strong>
+                ${escapeHTML(date)}
+            </strong>
+
+        </div>
+
+
+        <div class="detail-item full">
+
+            <small>Delivery Address</small>
+
+            <strong>
+                ${escapeHTML(
+                    order.address || "-"
+                )}
+            </strong>
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "orderModal"
+    )
+    .classList
+    .add("active");
+
+}
+
+
+/* =====================================================
+   CLOSE MODAL
+===================================================== */
+
+function closeOrderModal(){
+
+    document.getElementById(
+        "orderModal"
+    )
+    .classList
+    .remove("active");
+
+}
+
+
+function closeModalOutside(event){
+
+    if(
+        event.target.id ===
+        "orderModal"
+    ){
+
+        closeOrderModal();
+
+    }
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeOrderModal();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   LOAD VISITOR STATS
+===================================================== */
+
+async function loadVisitorStats(){
+
+    const token =
+        getAdminToken();
+
+
+    if(!token){
+
+        console.log(
+            "⚠️ Admin token not found"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        console.log(
+            "📊 Loading visitor statistics..."
+        );
+
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/visitor-stats",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "x-admin-token":
+                            token
+                    }
+                }
+            );
+
+
+        console.log(
+            "📊 Visitor Stats HTTP:",
+            response.status
+        );
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "📊 Visitor Stats Response:",
+            data
+        );
+
+
+        if(
+            response.status === 401
+        ){
+
+            console.log(
+                "❌ Admin authentication failed"
+            );
+
+            return;
+
+        }
+
+
+        if(
+            !response.ok ||
+            !data.success
+        ){
+
+            throw new Error(
+                data.message ||
+                "Unable to load visitor statistics"
+            );
+
+        }
+
+
+        document.getElementById(
+            "totalVisits"
+        ).textContent =
+            Number(
+                data.totalVisits || 0
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "uniqueVisitors"
+        ).textContent =
+            Number(
+                data.uniqueVisitors || 0
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "todayVisits"
+        ).textContent =
+            Number(
+                data.todayVisits || 0
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "todayVisitors"
+        ).textContent =
+            Number(
+                data.todayVisitors || 0
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "monthVisits"
+        ).textContent =
+            Number(
+                data.monthVisits || 0
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+        document.getElementById(
+            "monthVisitors"
+        ).textContent =
+            Number(
+                data.monthVisitors || 0
+            ).toLocaleString(
+                "en-IN"
+            );
+
+
+        console.log(
+            "✅ Visitor statistics loaded"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "❌ Visitor Stats Error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   LOAD LAST 7 DAYS CHART
+===================================================== */
+
+async function loadVisitorChart(){
+
+    const token =
+        getAdminToken();
+
+
+    const canvas =
+        document.getElementById(
+            "visitorChart"
+        );
+
+
+    const chartError =
+        document.getElementById(
+            "chartError"
+        );
+
+
+    if(!token){
+
+        console.log(
+            "⚠️ Admin token not found for chart"
+        );
+
+        return;
+
+    }
+
+
+    try{
+
+        console.log(
+            "📈 Loading last 7 days visitor chart..."
+        );
+
+
+        if(typeof Chart === "undefined"){
+
+            throw new Error(
+                "Chart.js failed to load"
+            );
+
+        }
+
+
+        const response =
+            await fetch(
+                "http://localhost:5000/api/visitor-7days",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "x-admin-token":
+                            token
+                    }
+                }
+            );
+
+
+        console.log(
+            "📈 Visitor Chart HTTP:",
+            response.status
+        );
+
+
+        const result =
+            await response.json();
+
+
+        console.log(
+            "📈 Visitor Chart Response:",
+            result
+        );
+
+
+        if(
+            response.status === 401
+        ){
+
+            throw new Error(
+                "Admin authentication failed"
+            );
+
+        }
+
+
+        if(
+            !response.ok ||
+            !result.success
+        ){
+
+            throw new Error(
+                result.message ||
+                "Unable to load visitor chart"
+            );
+
+        }
+
+
+        const data =
+            Array.isArray(
+                result.data
+            )
+                ? result.data
+                : [];
+
+
+        /*
+           If the backend has no visitor records yet,
+           still show a clean 7-day chart with zeroes.
+        */
+        let chartRows = data;
+
+        if(chartRows.length === 0){
+
+            const today =
+                new Date();
+
+            chartRows = [];
+
+            for(let i = 6; i >= 0; i--){
+
+                const date =
+                    new Date(today);
+
+                date.setDate(
+                    today.getDate() - i
+                );
+
+                const year =
+                    date.getFullYear();
+
+                const month =
+                    String(
+                        date.getMonth() + 1
+                    ).padStart(2,"0");
+
+                const day =
+                    String(
+                        date.getDate()
+                    ).padStart(2,"0");
+
+                chartRows.push({
+
+                    date:
+                        year + "-" +
+                        month + "-" +
+                        day,
+
+                    visits:0,
+
+                    visitors:0
+
+                });
+
+            }
+
+        }
+
+
+        const labels =
+            chartRows.map(
+                function(item){
+
+                    const date =
+                        new Date(
+                            item.date +
+                            "T00:00:00"
+                        );
+
+
+                    return date.toLocaleDateString(
+                        "en-IN",
+                        {
+                            day:"numeric",
+                            month:"short"
+                        }
+                    );
+
+                }
+            );
+
+
+        const visits =
+            chartRows.map(
+                function(item){
+
+                    return Number(
+                        item.visits || 0
+                    );
+
+                }
+            );
+
+
+        const visitors =
+            chartRows.map(
+                function(item){
+
+                    return Number(
+                        item.visitors || 0
+                    );
+
+                }
+            );
+
+
+        if(visitorChart){
+
+            visitorChart.destroy();
+
+        }
+
+
+        chartError.style.display =
+            "none";
+
+        canvas.style.display =
+            "block";
+
+
+        const ctx =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        visitorChart =
+            new Chart(
+                ctx,
+                {
+
+                    type:"line",
+
+                    data:{
+
+                        labels:labels,
+
+                        datasets:[
+
+                            {
+
+                                label:
+                                    "Visits",
+
+                                data:
+                                    visits,
+
+                                borderColor:
+                                    "#3498db",
+
+                                backgroundColor:
+                                    "rgba(52,152,219,0.12)",
+
+                                borderWidth:
+                                    3,
+
+                                tension:
+                                    0.4,
+
+                                fill:
+                                    false,
+
+                                pointRadius:
+                                    5,
+
+                                pointHoverRadius:
+                                    7
+
+                            },
+
+
+                            {
+
+                                label:
+                                    "Unique Visitors",
+
+                                data:
+                                    visitors,
+
+                                borderColor:
+                                    "#ff5b7f",
+
+                                backgroundColor:
+                                    "rgba(255,91,127,0.12)",
+
+                                borderWidth:
+                                    3,
+
+                                tension:
+                                    0.4,
+
+                                fill:
+                                    false,
+
+                                pointRadius:
+                                    5,
+
+                                pointHoverRadius:
+                                    7
+
+                            }
+
+                        ]
+
+                    },
+
+
+                    options:{
+
+                        responsive:true,
+
+                        maintainAspectRatio:false,
+
+
+                        interaction:{
+
+                            intersect:false,
+
+                            mode:"index"
+
+                        },
+
+
+                        plugins:{
+
+                            legend:{
+
+                                display:true,
+
+                                position:"top"
+
+                            },
+
+
+                            tooltip:{
+
+                                enabled:true
+
+                            }
+
+                        },
+
+
+                        scales:{
+
+                            x:{
+
+                                grid:{
+
+                                    display:true
+
+                                }
+
+                            },
+
+
+                            y:{
+
+                                beginAtZero:true,
+
+                                ticks:{
+
+                                    precision:0,
+
+                                    stepSize:1
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            );
+
+
+        console.log(
+            "✅ Last 7 days chart loaded"
+        );
+
+    }
+
+    catch(error){
+
+        console.error(
+            "❌ Visitor Chart Error:",
+            error
+        );
+
+
+        if(canvas){
+
+            canvas.style.display =
+                "none";
+
+        }
+
+
+        if(chartError){
+
+            chartError.style.display =
+                "flex";
+
+            chartError.innerHTML = `
+                ❌ Unable to load visitor chart.
+                <br><br>
+                ${escapeHTML(
+                    error.message
+                )}
+                <br><br>
+                Check that the backend is running on port 5000.
+            `;
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   REFRESH ALL
+===================================================== */
+
+function refreshAll(){
+
+    console.log(
+        "🔄 Refreshing admin dashboard..."
+    );
+
+
+    loadOrders();
+
+    loadVisitorStats();
+
+    loadVisitorChart();
+
+}
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
+
+        console.log(
+            "🚀 Admin dashboard loading..."
+        );
+
+
+        if(!checkAdminSession()){
+
+            return;
+
+        }
+
+
+        loadOrders();
+
+        loadVisitorStats();
+
+        loadVisitorChart();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

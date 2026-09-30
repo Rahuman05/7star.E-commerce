@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>UNDER ₹999 | TRENT CARD</title>
+
+
+  <style>
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f6f3ed;
+      color:#111;
+      overflow-x:hidden;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar{
+      width:100%;
+      height:72px;
+      padding:0 6%;
+
+      background:#111;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      position:sticky;
+      top:0;
+      z-index:1000;
+
+      border-bottom:1px solid rgba(201,166,107,.2);
+    }
+
+    .logo{
+      color:#f5f1e8;
+      font-size:22px;
+      font-weight:bold;
+      letter-spacing:2px;
+    }
+
+    .back-btn{
+      padding:9px 18px;
+
+      border:1px solid #c9a66b;
+      border-radius:25px;
+
+      background:transparent;
+      color:#fff;
+
+      font-size:12px;
+      font-weight:bold;
+
+      cursor:pointer;
+      transition:.3s;
+    }
+
+    .back-btn:hover{
+      background:#c9a66b;
+      color:#111;
+      transform:translateY(-2px);
+    }
+
+
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
+
+    .page-header{
+      text-align:center;
+      padding:45px 20px 35px;
+    }
+
+    .page-header span{
+      color:#b08d57;
+      font-size:11px;
+      font-weight:bold;
+      letter-spacing:5px;
+    }
+
+    .page-header h1{
+      margin:10px 0 7px;
+
+      font-size:44px;
+      font-weight:800;
+
+      color:#111;
+    }
+
+    .page-header h1 small{
+      color:#b08d57;
+      font-size:38px;
+    }
+
+    .page-header p{
+      color:#777;
+      font-size:14px;
+    }
+
+    .header-line{
+      width:48px;
+      height:2px;
+
+      background:#c9a66b;
+
+      margin:18px auto 0;
+    }
+
+
+    /* =====================================================
+       PRODUCTS SECTION
+    ===================================================== */
+
+    .products-section{
+      width:100%;
+      max-width:1250px;
+
+      margin:auto;
+
+      padding:0 25px 75px;
+    }
+
+    .products{
+      display:grid;
+
+      grid-template-columns:repeat(3,1fr);
+
+      gap:26px;
+    }
+
+
+    /* =====================================================
+       PRODUCT CARD
+    ===================================================== */
+
+    .product-card{
+      width:100%;
+
+      background:#fff;
+
+      border-radius:20px;
+
+      overflow:hidden;
+
+      border:1px solid #e5e0d7;
+
+      box-shadow:0 10px 30px rgba(0,0,0,.07);
+
+      transition:.35s;
+
+      position:relative;
+    }
+
+    .product-card:hover{
+      transform:translateY(-7px);
+
+      border-color:#c9a66b;
+
+      box-shadow:0 20px 40px rgba(0,0,0,.13);
+    }
+
+
+    /* =====================================================
+       PRODUCT IMAGE
+    ===================================================== */
+
+    .product-image{
+      width:100%;
+      height:280px;
+
+      background:#f0f0f0;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+
+      position:relative;
+
+      overflow:hidden;
+    }
+
+    .product-image img{
+      width:100%;
+      height:100%;
+
+      object-fit:cover;
+
+      transition:.4s;
+    }
+
+    .product-card:hover .product-image img{
+      transform:scale(1.05);
+    }
+
+
+    /* =====================================================
+       UNDER ₹999 BADGE
+    ===================================================== */
+
+    .offer-badge{
+      position:absolute;
+
+      top:14px;
+      left:14px;
+
+      z-index:5;
+
+      padding:7px 12px;
+
+      background:#c9a66b;
+      color:#111;
+
+      border-radius:20px;
+
+      font-size:9px;
+      font-weight:bold;
+
+      letter-spacing:1px;
+    }
+
+
+    /* =====================================================
+       WISHLIST
+    ===================================================== */
+
+    .wishlist-btn{
+      position:absolute;
+
+      top:13px;
+      right:13px;
+
+      width:38px;
+      height:38px;
+
+      border:none;
+      border-radius:50%;
+
+      background:#fff;
+      color:#111;
+
+      font-size:20px;
+
+      cursor:pointer;
+
+      box-shadow:0 5px 15px rgba(0,0,0,.12);
+
+      z-index:5;
+
+      transition:.3s;
+    }
+
+    .wishlist-btn:hover{
+      transform:scale(1.1);
+      color:#c62828;
+    }
+
+
+    /* =====================================================
+       PRODUCT INFO
+    ===================================================== */
+
+    .product-info{
+      padding:20px;
+
+      text-align:center;
+    }
+
+    .product-category{
+      color:#b08d57;
+
+      font-size:9px;
+      font-weight:bold;
+
+      letter-spacing:2px;
+
+      text-transform:uppercase;
+
+      margin-bottom:7px;
+    }
+
+    .product-name{
+      font-size:17px;
+      font-weight:bold;
+
+      color:#111;
+
+      margin-bottom:7px;
+    }
+
+    .product-description{
+      color:#777;
+
+      font-size:12px;
+
+      line-height:1.5;
+
+      min-height:36px;
+
+      margin-bottom:13px;
+    }
+
+
+    /* =====================================================
+       PRICE
+    ===================================================== */
+
+    .price{
+      display:flex;
+
+      align-items:center;
+      justify-content:center;
+
+      gap:9px;
+
+      margin-bottom:16px;
+    }
+
+    .old-price{
+      color:#999;
+
+      text-decoration:line-through;
+
+      font-size:12px;
+    }
+
+    .new-price{
+      color:#b08d57;
+
+      font-size:20px;
+
+      font-weight:bold;
+    }
+
+
+    /* =====================================================
+       SHOP BUTTON
+    ===================================================== */
+
+    .shop-btn{
+      width:100%;
+
+      padding:11px 18px;
+
+      border:none;
+      border-radius:25px;
+
+      background:#111;
+      color:#fff;
+
+      border:1px solid #c9a66b;
+
+      font-size:10px;
+      font-weight:bold;
+
+      letter-spacing:1px;
+
+      cursor:pointer;
+
+      transition:.3s;
+    }
+
+    .shop-btn:hover{
+      background:#c9a66b;
+      color:#111;
+
+      transform:translateY(-2px);
+    }
+
+
+    /* =====================================================
+       LOADING / EMPTY
+    ===================================================== */
+
+    .message{
+      grid-column:1/-1;
+
+      text-align:center;
+
+      padding:70px 20px;
+
+      color:#777;
+
+      font-size:14px;
+    }
+
+
+    /* =====================================================
+       TABLET
+    ===================================================== */
+
+    @media(max-width:1000px){
+
+      .products{
+        grid-template-columns:repeat(3,1fr);
+        gap:15px;
+      }
+
+      .product-image{
+        height:220px;
+      }
+
+      .product-info{
+        padding:15px 10px;
+      }
+
+      .product-name{
+        font-size:14px;
+      }
+
+      .product-description{
+        font-size:10px;
+      }
+
+      .new-price{
+        font-size:17px;
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE — 3 PRODUCTS PER ROW
+    ===================================================== */
+
+    @media(max-width:600px){
+
+      .navbar{
+        height:60px;
+        padding:0 4%;
+      }
+
+      .logo{
+        font-size:15px;
+        letter-spacing:1px;
+      }
+
+      .back-btn{
+        padding:7px 12px;
+        font-size:9px;
+      }
+
+
+      /* HEADER */
+
+      .page-header{
+        padding:32px 10px 25px;
+      }
+
+      .page-header span{
+        font-size:8px;
+        letter-spacing:3px;
+      }
+
+      .page-header h1{
+        font-size:29px;
+        margin:8px 0 5px;
+      }
+
+      .page-header h1 small{
+        font-size:25px;
+      }
+
+      .page-header p{
+        font-size:10px;
+      }
+
+      .header-line{
+        margin-top:14px;
+      }
+
+
+      /* PRODUCTS */
+
+      .products-section{
+        padding:0 7px 45px;
+      }
+
+      .products{
+        grid-template-columns:repeat(3,1fr);
+        gap:7px;
+      }
+
+
+      /* CARD */
+
+      .product-card{
+        border-radius:11px;
+      }
+
+
+      /* IMAGE */
+
+      .product-image{
+        height:125px;
+      }
+
+
+      /* BADGE */
+
+      .offer-badge{
+        top:5px;
+        left:5px;
+
+        padding:4px 5px;
+
+        font-size:5px;
+
+        letter-spacing:.4px;
+      }
+
+
+      /* WISHLIST */
+
+      .wishlist-btn{
+        top:5px;
+        right:5px;
+
+        width:25px;
+        height:25px;
+
+        font-size:13px;
+      }
+
+
+      /* INFO */
+
+      .product-info{
+        padding:8px 5px;
+      }
+
+      .product-category{
+        font-size:5px;
+
+        letter-spacing:.5px;
+
+        margin-bottom:4px;
+      }
+
+      .product-name{
+        font-size:9px;
+
+        line-height:1.25;
+
+        margin-bottom:4px;
+      }
+
+      .product-description{
+        font-size:6.5px;
+
+        line-height:1.3;
+
+        min-height:22px;
+
+        margin-bottom:5px;
+      }
+
+
+      /* PRICE */
+
+      .price{
+        gap:3px;
+
+        margin-bottom:6px;
+      }
+
+      .old-price{
+        font-size:6.5px;
+      }
+
+      .new-price{
+        font-size:11px;
+      }
+
+
+      /* BUTTON */
+
+      .shop-btn{
+        padding:7px 2px;
+
+        font-size:6px;
+
+        letter-spacing:.3px;
+      }
+
+    }
+
+
+    /* =====================================================
+       EXTRA SMALL
+    ===================================================== */
+
+    @media(max-width:360px){
+
+      .products-section{
+        padding-left:5px;
+        padding-right:5px;
+      }
+
+      .products{
+        gap:5px;
+      }
+
+      .product-image{
+        height:112px;
+      }
+
+      .product-info{
+        padding:7px 4px;
+      }
+
+      .product-name{
+        font-size:8px;
+      }
+
+      .product-description{
+        font-size:6px;
+        min-height:20px;
+      }
+
+      .new-price{
+        font-size:10px;
+      }
+
+      .shop-btn{
+        padding:6px 1px;
+        font-size:5.5px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="navbar">
+
+  <div class="logo">
+    𝐓𝐑𝐄𝐍𝐓 𝐂𝐀𝐑𝐃
+  </div>
+
+
+  <button
+    class="back-btn"
+    onclick="history.back()"
+  >
+    ← Back
+  </button>
+
+</nav>
+
+
+
+<!-- =====================================================
+     PAGE HEADER
+===================================================== -->
+
+<section class="page-header">
+
+  <span>
+    BEST VALUE
+  </span>
+
+
+  <h1>
+    UNDER <small>₹999</small>
+  </h1>
+
+
+  <p>
+    Premium styles at special prices
+  </p>
+
+
+  <div class="header-line"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section class="products-section">
+
+  <div
+    class="products"
+    id="productsContainer"
+  >
+
+    <div class="message">
+      Loading products...
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<script>
+
+  const API_URL = "http://localhost:5000";
+
+
+  /* =====================================================
+     IMAGE URL
+  ===================================================== */
+
+  function getImageUrl(image){
+
+    if(!image){
+      return API_URL + "/img/gray.webp";
+    }
+
+
+    if(image.startsWith("http")){
+      return image;
+    }
+
+
+    if(image.startsWith("/img/")){
+      return API_URL + image;
+    }
+
+
+    if(image.startsWith("img/")){
+      return API_URL + "/" + image;
+    }
+
+
+    return API_URL + "/img/" + image;
+  }
+
+
+
+  /* =====================================================
+     LOAD PRODUCTS
+  ===================================================== */
+
+  async function loadProducts(){
+
+    const container =
+      document.getElementById(
+        "productsContainer"
+      );
+
+
+    try{
+
+      const response =
+        await fetch(
+          API_URL + "/api/products"
+        );
+
+
+      const data =
+        await response.json();
+
+
+      if(!data.success){
+
+        throw new Error(
+          "Products not found"
+        );
+
+      }
+
+
+      /*
+        Only products ₹999 or below
+      */
+
+      const products =
+        data.products
+          .filter(product =>
+            Number(product.price) <= 999
+          )
+          .sort((a,b) =>
+            new Date(b.createdAt || 0) -
+            new Date(a.createdAt || 0)
+          );
+
+
+      if(products.length === 0){
+
+        container.innerHTML = `
+
+          <div class="message">
+
+            No products available
+            under ₹999.
+
+          </div>
+
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML = "";
+
+
+      products.forEach(product => {
+
+
+        const card =
+          document.createElement("div");
+
+
+        card.className =
+          "product-card";
+
+
+        const image =
+          getImageUrl(
+            product.image
+          );
+
+
+        const price =
+          Number(
+            product.price || 0
+          );
+
+
+        const originalPrice =
+          Number(
+            product.originalPrice ||
+            product.oldPrice ||
+            0
+          );
+
+
+        let priceHTML = "";
+
+
+        if(
+          originalPrice > price &&
+          originalPrice > 0
+        ){
+
+          priceHTML = `
+
+            <span class="old-price">
+              ₹${originalPrice}
+            </span>
+
+            <span class="new-price">
+              ₹${price}
+            </span>
+
+          `;
+
+        }else{
+
+          priceHTML = `
+
+            <span class="new-price">
+              ₹${price}
+            </span>
+
+          `;
+        }
+
+
+        card.innerHTML = `
+
+          <div class="product-image">
+
+
+            <span class="offer-badge">
+              UNDER ₹999
+            </span>
+
+
+            <button
+              class="wishlist-btn"
+              onclick="
+                event.stopPropagation();
+                addWishlist('${product._id}')
+              "
+            >
+              ♡
+            </button>
+
+
+            <img
+              src="${image}"
+              alt="${product.name || "Product"}"
+              onerror="
+                this.src='${API_URL}/img/gray.webp'
+              "
+            >
+
+          </div>
+
+
+          <div class="product-info">
+
+
+            <div class="product-category">
+
+              ${product.category || "Fashion"}
+
+            </div>
+
+
+            <h3 class="product-name">
+
+              ${product.name || "Premium Product"}
+
+            </h3>
+
+
+            <p class="product-description">
+
+              ${
+                product.description ||
+                "Premium style for everyday wear."
+              }
+
+            </p>
+
+
+            <div class="price">
+
+              ${priceHTML}
+
+            </div>
+
+
+            <button
+              class="shop-btn"
+              onclick="
+                buyProduct('${product._id}')
+              "
+            >
+
+              SHOP NOW →
+
+            </button>
+
+
+          </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+      });
+
+
+    }catch(error){
+
+      console.error(error);
+
+
+      container.innerHTML = `
+
+        <div class="message">
+
+          Unable to load products.
+
+          <br><br>
+
+          Please check your backend server.
+
+        </div>
+
+      `;
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     BUY PRODUCT
+  ===================================================== */
+
+  function buyProduct(id){
+
+    localStorage.setItem(
+      "under999ProductId",
+      id
+    );
+
+
+    /*
+      Keep the selected product ID
+      and continue to order page.
+    */
+
+    window.location.href =
+      "order.html";
+
+  }
+
+
+
+  /* =====================================================
+     WISHLIST
+  ===================================================== */
+
+  function addWishlist(id){
+
+    let wishlist =
+      JSON.parse(
+        localStorage.getItem(
+          "trentCardWishlist"
+        )
+      ) || [];
+
+
+    if(
+      !wishlist.includes(id)
+    ){
+
+      wishlist.push(id);
+
+
+      localStorage.setItem(
+        "trentCardWishlist",
+        JSON.stringify(wishlist)
+      );
+
+    }
+
+  }
+
+
+
+  /* =====================================================
+     START
+  ===================================================== */
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    loadProducts
+  );
+
+</script>
+
+
+</body>
+
+</html>
