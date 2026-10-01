@@ -1094,7 +1094,7 @@ async function loadOrders(){
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders",
+                "https://sevenstar-e-commerce.onrender.com/api/orders",
                 {
                     method:"GET",
 
@@ -1639,7 +1639,7 @@ async function updateStatus(
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders/" +
+                "https://sevenstar-e-commerce.onrender.com/api/orders/" +
                 orderId +
                 "/status",
                 {
@@ -1769,7 +1769,7 @@ async function deleteOrder(orderId){
 
         const response =
             await fetch(
-                "http://localhost:5000/api/orders/" +
+                "https://sevenstar-e-commerce.onrender.com/api/orders/" +
                 orderId,
                 {
                     method:"DELETE",
@@ -2132,7 +2132,7 @@ async function loadVisitorStats(){
 
         const response =
             await fetch(
-                "http://localhost:5000/api/visitor-stats",
+                "https://sevenstar-e-commerce.onrender.com/api/visitor-stats",
                 {
                     method:"GET",
 
@@ -2315,7 +2315,7 @@ async function loadVisitorChart(){
 
         const response =
             await fetch(
-                "http://localhost:5000/api/visitor-7days",
+                "https://sevenstar-e-commerce.onrender.com/api/visitor-7days",
                 {
                     method:"GET",
 
