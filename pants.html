@@ -1345,14 +1345,14 @@ function getImageUrl(image){
 
   if(image.startsWith("/img/")){
 
-    return "http://localhost:5000" + image;
+    return "https://sevenstar-e-commerce.onrender.com" + image;
 
   }
 
 
   if(image.startsWith("img/")){
 
-    return "http://localhost:5000/" + image;
+    return "https://sevenstar-e-commerce.onrender.com/" + image;
 
   }
 
@@ -1362,7 +1362,7 @@ function getImageUrl(image){
     const fileName =
       image.split("/").pop();
 
-    return "http://localhost:5000/img/" +
+    return "https://sevenstar-e-commerce.onrender.com/img/" +
       fileName;
 
   }
@@ -1370,7 +1370,7 @@ function getImageUrl(image){
 
   if(!image.startsWith("/")){
 
-    return "http://localhost:5000/img/" +
+    return "https://sevenstar-e-commerce.onrender.com/img/" +
       image;
 
   }
@@ -1397,7 +1397,7 @@ async function loadProducts(){
 
     const response =
       await fetch(
-        "http://localhost:5000/api/products/pants"
+        "https://sevenstar-e-commerce.onrender.com/api/products/pants"
       );
 
 
@@ -1560,7 +1560,7 @@ async function loadProducts(){
 
               this.onerror=null;
 
-              this.src='http://localhost:5000/img/gray.webp';
+              this.src='https://sevenstar-e-commerce.onrender.com/img/gray.webp';
 
             "
 
@@ -2348,7 +2348,7 @@ function openProductDetails(
       this.onerror=null;
 
       this.src =
-        "http://localhost:5000/img/gray.webp";
+        "https://sevenstar-e-commerce.onrender.com/img/gray.webp";
 
     };
 

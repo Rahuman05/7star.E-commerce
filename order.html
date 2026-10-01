@@ -844,7 +844,7 @@
 
       if(!image){
 
-        return "http://localhost:5000/img/gray.webp";
+        return "https://sevenstar-e-commerce.onrender.com/img/gray.webp";
 
       }
 
@@ -865,7 +865,7 @@
 
       if(image.startsWith("/img/")){
 
-        return "http://localhost:5000" + image;
+        return "https://sevenstar-e-commerce.onrender.com" + image;
 
       }
 
@@ -874,7 +874,7 @@
 
       if(image.startsWith("img/")){
 
-        return "http://localhost:5000/" + image;
+        return "https://sevenstar-e-commerce.onrender.com/" + image;
 
       }
 
@@ -886,7 +886,7 @@
         const fileName =
           image.split("/").pop();
 
-        return "http://localhost:5000/img/" + fileName;
+        return "https://sevenstar-e-commerce.onrender.com/img/" + fileName;
 
       }
 
@@ -895,7 +895,7 @@
 
       if(!image.startsWith("/")){
 
-        return "http://localhost:5000/img/" + image;
+        return "https://sevenstar-e-commerce.onrender.com/img/" + image;
 
       }
 
@@ -965,7 +965,7 @@
           this.onerror = null;
 
           this.src =
-            "http://localhost:5000/img/gray.webp";
+            "https://sevenstar-e-commerce.onrender.com/img/gray.webp";
 
         };
 
@@ -1400,7 +1400,7 @@
         const response =
           await fetch(
 
-            "http://localhost:5000/api/orders",
+            "https://sevenstar-e-commerce.onrender.com/api/orders",
 
             {
 

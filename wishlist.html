@@ -749,14 +749,14 @@ function getImageUrl(image){
 
   if(image.startsWith("/img/")){
 
-    return "http://localhost:5000" + image;
+    return "https://sevenstar-e-commerce.onrender.com" + image;
 
   }
 
 
   if(image.startsWith("img/")){
 
-    return "http://localhost:5000/" + image;
+    return "https://sevenstar-e-commerce.onrender.com/" + image;
 
   }
 
@@ -767,7 +767,7 @@ function getImageUrl(image){
       image.split("/").pop();
 
     return (
-      "http://localhost:5000/img/" +
+      "https://sevenstar-e-commerce.onrender.com/img/" +
       fileName
     );
 
@@ -777,7 +777,7 @@ function getImageUrl(image){
   if(!image.startsWith("/")){
 
     return (
-      "http://localhost:5000/img/" +
+      "https://sevenstar-e-commerce.onrender.com/img/" +
       image
     );
 
@@ -940,7 +940,7 @@ function displayWishlist(){
               alt="${name}"
               onerror="
                 this.onerror=null;
-                this.src='http://localhost:5000/img/gray.webp';
+                this.src='https://sevenstar-e-commerce.onrender.com/img/gray.webp';
               "
             >
 

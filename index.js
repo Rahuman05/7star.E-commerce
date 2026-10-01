@@ -638,7 +638,7 @@ function setupNewsletter(){
 
         const response =
           await fetch(
-            "http://localhost:5000/api/subscribe",
+            "https://sevenstar-e-commerce.onrender.com/api/subscribe",
             {
               method: "POST",
 
@@ -814,7 +814,7 @@ async function trackVisitor(){
 
     const response =
       await fetch(
-        "http://localhost:5000/api/visitor",
+        "https://sevenstar-e-commerce.onrender.com/api/visitor",
         {
 
           method: "POST",

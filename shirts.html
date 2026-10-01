@@ -1023,11 +1023,11 @@ function getImageUrl(image){
   }
 
   if(image.startsWith("/img/")){
-    return "http://localhost:5000" + image;
+    return "https://sevenstar-e-commerce.onrender.com" + image;
   }
 
   if(image.startsWith("img/")){
-    return "http://localhost:5000/" + image;
+    return "https://sevenstar-e-commerce.onrender.com/" + image;
   }
 
   if(image.startsWith("images/")){
@@ -1035,12 +1035,12 @@ function getImageUrl(image){
     const fileName =
       image.split("/").pop();
 
-    return "http://localhost:5000/img/" + fileName;
+    return "https://sevenstar-e-commerce.onrender.com/img/" + fileName;
 
   }
 
   if(!image.startsWith("/")){
-    return "http://localhost:5000/img/" + image;
+    return "https://sevenstar-e-commerce.onrender.com/img/" + image;
   }
 
   return image;
@@ -1063,7 +1063,7 @@ async function loadProducts(){
 
     const response =
       await fetch(
-        "http://localhost:5000/api/products/shirts"
+        "https://sevenstar-e-commerce.onrender.com/api/products/shirts"
       );
 
     if(!response.ok){
@@ -1176,7 +1176,7 @@ async function loadProducts(){
             alt="${product.name || "Shirt"}"
             onerror="
               this.onerror=null;
-              this.src='http://localhost:5000/img/gray.webp';
+              this.src='https://sevenstar-e-commerce.onrender.com/img/gray.webp';
             "
           >
 
