@@ -6,6 +6,13 @@ const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
 const crypto = require("crypto");
+const cloudinary = require("cloudinary").v2;
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // =========================
 // ENV
@@ -120,8 +127,13 @@ const upload =
 // MONGODB
 // =========================
 
-const mongoURI =
+const rawMongoURI =
     process.env.MONGO_URI?.trim();
+
+const mongoURI =
+    rawMongoURI
+        ? rawMongoURI.replace(/\s+/g, "")
+        : "";
 
 console.log(
     "MongoDB URI loaded:",
@@ -1148,34 +1160,32 @@ app.get(
 // =========================
 // UPLOAD PRODUCT IMAGE
 // =========================
-
 app.post(
     "/api/upload",
     adminOnly,
     upload.single("image"),
-    (req, res) => {
+    async (req, res) => {
 
         try {
 
             if (!req.file) {
-
                 return res.status(400).json({
-
                     success: false,
-
-                    message:
-                        "Please select an image"
-
+                    message: "Please select an image"
                 });
             }
 
-            const imagePath =
-                "/img/" +
-                req.file.filename;
+            const result =
+                await cloudinary.uploader.upload(
+                    req.file.path,
+                    {
+                        folder: "trent-card/products"
+                    }
+                );
 
             console.log(
-                "✅ Image Uploaded:",
-                req.file.filename
+                "✅ Cloudinary Upload:",
+                result.secure_url
             );
 
             res.json({
@@ -1186,7 +1196,7 @@ app.post(
                     "Image uploaded successfully!",
 
                 image:
-                    imagePath
+                    result.secure_url
 
             });
 
@@ -1194,7 +1204,7 @@ app.post(
         catch (error) {
 
             console.log(
-                "❌ Image Upload Error:",
+                "❌ Cloudinary Upload Error:",
                 error.message
             );
 
@@ -1206,10 +1216,10 @@ app.post(
                     "Image upload failed"
 
             });
+
         }
     }
 );
-
 // =========================
 // CREATE PRODUCT
 // =========================
